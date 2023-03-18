@@ -1,6 +1,7 @@
 <template>
   <NavigationComp />
-  <form @submit.prevent="submitForm">
+  <div class="container">
+    <form @submit.prevent="submitForm">
     <div class="row mt-5">
       <div class="col-lg-4 mt-3">
         <label for="user">Username:</label>
@@ -32,34 +33,36 @@
         <button type="submit" class="btn btn-primary">Login</button>
       </div>
       <div class="col--lg-12 mt-2">
-        <p class="small">I don't have an account 
-            <router-link to="/signup">Register</router-link>
+        <p class="small">
+          I don't have an account
+          <router-link to="/signup">Register</router-link>
         </p>
       </div>
     </div>
   </form>
+  </div>
 </template>
 
 <script>
-import NavigationComp from '../components/NavigationComp.vue'
+import NavigationComp from "../components/NavigationComp.vue";
 export default {
-    components: {
-        NavigationComp
+  components: {
+    NavigationComp,
+  },
+  data() {
+    return {
+      username: "",
+      password: "",
+    };
+  },
+  methods: {
+    async submitForm() {
+      await this.$store.dispatch("login", {
+        username: this.username,
+        password: this.password,
+      });
+      this.$router.push("/products");
     },
-    data() {
-        return {
-            username: '',
-            password: ''
-        }
-    },
-    methods: {
-        async submitForm() {
-            await this.$store.dispatch('login', {
-                username: this.username,
-                password: this.password
-            });
-            this.$router.push('/products');
-        },
-    },
+  },
 };
 </script>

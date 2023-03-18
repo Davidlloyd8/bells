@@ -1,6 +1,6 @@
 <template>
-  <nav class="navbar navbar-expand-lg bg-body-tertiary">
-    <div class="container-fluid">
+  <nav class="navbar navbar-expand-lg navColor">
+    <div class="container">
       <router-link class="navbar-brand" to="/">Bells</router-link>
       <button
         class="navbar-toggler"
@@ -32,8 +32,8 @@
             <router-link to="#" class="nav-link" @click="logout">Logout</router-link>
           </li>
           </template>
-          <li class="nav-item">
-            <router-link class="nav-link" to="/login">Login</router-link>
+          <li class="nav-item" v-else>
+            <router-link class="nav-link"  to="/login">Login</router-link>
           </li>
         </ul>
       </div>
@@ -57,3 +57,21 @@ export default {
     },
 };
 </script>
+
+
+<style scoped>
+.navColor {
+  background-color: #f9f7f0;
+}
+.navColor, .navbar-brand, .nav-link {
+    color: #072a40 !important;
+    font-family: monospace;
+    font-weight: 500;
+}
+.navbar-brand {
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-family: cursive;
+}
+</style>
