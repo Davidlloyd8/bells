@@ -5,23 +5,25 @@
       <div class="container">
         <h2 class="text-center">Products</h2>
         <div class="row">
-          <div class="col-lg-4 mb-3">
+          <div
+            class="col-lg-3 mb-3"
+            v-for="product in data.products"
+            :key="product.id"
+          >
             <router-link
               :to="{ name: 'ProductPage', params: { id: product.id } }"
-              v-for="product in data.products"
-              :key="product.id"
             >
-              <div class="card" style="width: 15rem">
+              <div class="card p-3" style="width: 15rem">
                 <img
                   :src="product.images[0]"
                   class="card-img-top"
                   :alt="product.title"
                 />
                 <div class="card-body">
-                  <p class="card-text">
+                  <h3 class="card-text text-center">
                     {{ product.title }}
-                  </p>
-                  <p class="card-text">${{ product.price }}.00</p>
+                  </h3>
+                  <p class="card-text text-center">${{ product.price }}.00</p>
                 </div>
               </div>
             </router-link>
@@ -62,5 +64,16 @@ export default {
 a {
   text-decoration: none;
   color: #072a40;
+}
+.col-lg-4 {
+  height: 100%;
+}
+img {
+  height: 150px;
+  width: 100%;
+}
+h3 {
+  font-size: 15px;
+  font-weight: 700;
 }
 </style>
