@@ -92,4 +92,14 @@ p {
   font-weight: 500;
   font-family: monospace;
 }
+
+@media screen and (max-width: 768px) {
+  .box {
+    display: none;
+  }
+  .col-lg-8 {
+    width: 100%;
+  }
+
+}
 </style>
