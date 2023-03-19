@@ -1,24 +1,4 @@
-# bells
+# BELLS STORE
+A simple web application that fetch an API of goods and simulate fake authentication for signup
+Live Link: https://bells-store.vercel.app/
 
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
