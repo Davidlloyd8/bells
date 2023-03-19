@@ -31,6 +31,7 @@
                   required
                   class="form-control"
                   id="pwd"
+                  current-password
                 />
               </div>
               <div class="col-lg-12 mt-4">
@@ -59,6 +60,8 @@ export default {
   },
   data() {
     return {
+      usernames: [],
+      passwords: [],
       username: "",
       password: "",
     };
@@ -69,7 +72,24 @@ export default {
         username: this.username,
         password: this.password,
       });
-      this.$router.push("/products");
+      const users = JSON.parse(localStorage.getItem("users"));
+      if (
+        users.find(
+          (user) =>
+            user.username === this.username && user.password === this.password
+        )
+      ) {
+        localStorage.setItem(
+          "loggedInUser",
+          JSON.stringify({
+            username: this.username,
+            password: this.password,
+          })
+        );
+        this.$router.push("/products");
+      } else {
+        alert("Account not found\nKindly register your account");
+      }
     },
   },
 };

@@ -3,11 +3,13 @@ import { createStore } from "vuex";
 export default createStore({
   state: {
     user: null,
-    users: [],
   },
   getters: {
     isAuthenticated(state) {
-      return !!state.user;
+      return !!state.user || !!JSON.parse(localStorage.getItem("loggedInUser"));
+    },
+    loggedInUser() {
+      JSON.parse(localStorage.getItem("loggedInUser"));
     },
   },
   mutations: {
@@ -15,9 +17,16 @@ export default createStore({
       state.user = user;
     },
     addUser(state, user) {
-      state.users.push(user);
+      const users = JSON.parse(localStorage.getItem("users"));
+      if (users) {
+        const newUsersList = [...users, user];
+        localStorage.setItem("users", JSON.stringify(newUsersList));
+      } else if (!users) {
+        localStorage.setItem("users", JSON.stringify([user]));
+      }
     },
     clearUser(state) {
+      localStorage.removeItem("loggedInUser");
       state.user = null;
     },
   },

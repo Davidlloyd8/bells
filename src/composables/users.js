@@ -1,5 +1,4 @@
-import store from "@/store";
 
 export function useUser() {
-    return store.state.user;
+    return JSON.parse(localStorage.getItem("loggedInUser"));
 }

@@ -7,6 +7,7 @@ import SignupPage from "../pages/SignupPage.vue";
 import store from "@/store";
 
 function authenticateGuard() {
+    store.dispatch("login", store.getters.loggedInUser);
     if (!store.getters.isAuthenticated) {
         return {path: "login"};
     }
@@ -14,6 +15,7 @@ function authenticateGuard() {
 
 function guestGuard() {
     if (store.getters.isAuthenticated) {
+        store.dispatch("login", store.getters.loggedInUser);
         return {path: "product"};
     }
 }
@@ -64,6 +66,7 @@ const routes = [
         name: "ErrorPage",
         component: () => import("../pages/ErrorPage.vue"),
     },
+    { path: "/:catchAll(.*)", redirect: "/404" },
 ];
 
 const router = createRouter({
